@@ -1,0 +1,25 @@
+function loadGrain(levels) {
+  let left = levels[0];
+  let end = levels[levels.length-1];
+  let max = 0;
+  let result = 0;
+  let sum = 0;
+  let allSum = 0;
+  let index = 1;
+  for (let i = 1; i < levels.length; i++) {
+    if (levels[i] >= left || levels[i] >= end) {
+      max = levels[i] < left ? levels[i] : left;
+      allSum = (i-index) * max;
+      result += allSum - sum;
+      left = levels[i];
+      sum = -levels[i];
+      index = i+1;
+      
+    }
+    sum = sum + levels[i]; 
+  }  
+  return  result;  
+}
+
+
+
